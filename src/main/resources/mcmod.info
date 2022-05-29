@@ -1,14 +1,14 @@
 [
 {
   "modid": "bbraexploit",
-  "name": "${BBraExploit.NAME}",
-  "description": "BBra Exploit on top.",
+  "name": "BBra exploit",
+  "description": "BBra Exploit on top!",
   "version": "${version}",
-  "mcversion": "${mcversion}",
+  "mcversion": "1.12.2",
   "url": "",
   "updateUrl": "",
   "authorList": ["Bluecross","Hedgegod"],
-  "credits": "The Forge and FML guys, for making this example",
+  "credits": "Idk",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

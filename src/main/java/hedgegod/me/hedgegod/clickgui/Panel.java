@@ -1,5 +1,6 @@
 package hedgegod.me.hedgegod.clickgui;
 
+import font.FontUtils;
 import hedgegod.bbra.bbraexploit.Client;
 import hedgegod.bbra.bbraexploit.Module.Module;
 import net.minecraft.client.Minecraft;
@@ -43,7 +44,7 @@ public class Panel {
         }
 
         Gui.drawRect(x, y, x + width, y + height, new Color(0x4A0CAA).hashCode());
-        mc.fontRenderer.drawStringWithShadow(category.name(), x + width / 2 - mc.fontRenderer.getStringWidth(category.name()) / 2, y + height / 2 - 9 / 2, -1);
+        FontUtils.normal.drawStringWithShadow(category.name(), x + width / 2 - FontUtils.normal.getStringWidth (category.name()) / 2, y + height / 2 - 9 / 2, -1);
 
         if (extended) {
             int y1 = y + height;

@@ -1,6 +1,7 @@
 package yea.hedgegod.clickgui.component.components;
 
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import hedgegod.bbra.bbraexploit.BBraExploit;
@@ -101,7 +102,7 @@ public class Button extends Component {
 	}
 
 	@Override
-	public void mouseClicked(int mouseX, int mouseY, int button) {
+	public void mouseClicked(int mouseX, int mouseY, int button) throws IOException {
 		if(isMouseOnButton(mouseX, mouseY) && button == 0) {
 			this.mod.toggle();
 		}

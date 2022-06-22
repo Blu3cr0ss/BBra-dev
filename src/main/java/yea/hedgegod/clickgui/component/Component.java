@@ -1,5 +1,7 @@
 package yea.hedgegod.clickgui.component;
 
+import java.io.IOException;
+
 public class Component {
 
 	public void renderComponent() {
@@ -10,7 +12,7 @@ public class Component {
 		
 	}
 	
-	public void mouseClicked(int mouseX, int mouseY, int button) {
+	public void mouseClicked(int mouseX, int mouseY, int button) throws IOException {
 		
 	}
 	

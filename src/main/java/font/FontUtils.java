@@ -13,6 +13,11 @@ public class FontUtils {
     public static volatile int completed;
     public static MinecraftFontRenderer normal;
     private static Font normal_;
+    private static int fontSize = 19;
+
+    public static void setFontSize(int size) {
+        fontSize = size;
+    }
 
     private static Font getFont(Map<String, Font> locationMap, String location, int size) {
         Font font = null;
@@ -43,7 +48,7 @@ public class FontUtils {
         new Thread(() ->
         {
             Map<String, Font> locationMap = new HashMap<>();
-            normal_ = getFont(locationMap, "font.otf", 19);
+            normal_ = getFont(locationMap, "font.otf", fontSize);
             completed++;
         }).start();
         new Thread(() ->

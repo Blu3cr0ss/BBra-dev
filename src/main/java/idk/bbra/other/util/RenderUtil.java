@@ -1,5 +1,6 @@
 package idk.bbra.other.util;
 
+import inc.bbra.exploit.utils.EntityUtil;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -31,7 +32,7 @@ import java.awt.*;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.*;
-
+import inc.bbra.font.FontUtils;
 public class RenderUtil
         implements Util {
     private static final Frustum frustrum = new Frustum();
@@ -64,8 +65,8 @@ public class RenderUtil
         GlStateManager.pushMatrix();
         GlStateManager.translate(projection.getX(), projection.getY(), 0.0);
         String text = name + ": " + Math.round(mc.player.getDistance(pos.getX(), pos.getY(), pos.getZ())) + "M";
-        float textWidth = Phobos.textManager.getStringWidth(text);
-        Phobos.textManager.drawString(text, -(textWidth / 2.0f), -((float) Phobos.textManager.getFontHeight() / 2.0f) + (float) Phobos.textManager.getFontHeight() / 2.0f, color.getRGB(), false);
+        float textWidth = (float)FontUtils.normal.getStringWidth(text);
+        FontUtils.normal.drawString(text, -(textWidth / 2.0f), -((float) FontUtils.normal.getHeight() / 2.0f) + (float) FontUtils.normal.getHeight() / 2.0f, color.getRGB());
         GlStateManager.translate(-projection.getX(), -projection.getY(), 0.0);
         GlStateManager.popMatrix();
     }
@@ -1089,8 +1090,8 @@ public class RenderUtil
         GlStateManager.pushMatrix();
         RenderUtil.glBillboardDistanceScaled((float) pos.getX() + 0.5f, (float) pos.getY() + 0.5f, (float) pos.getZ() + 0.5f, mc.player, 1.0f);
         GlStateManager.disableDepth();
-        GlStateManager.translate(-((double) Phobos.textManager.getStringWidth(text) / 2.0), 0.0, 0.0);
-        Phobos.textManager.drawStringWithShadow(text, 0.0f, 0.0f, -5592406);
+        GlStateManager.translate(-((double) FontUtils.normal.getStringWidth(text) / 2.0), 0.0, 0.0);
+        FontUtils.normal.drawStringWithShadow(text, 0.0f, 0.0f, -5592406);
         GlStateManager.popMatrix();
     }
 
@@ -1101,9 +1102,9 @@ public class RenderUtil
     }
 
     public static void blockEsp(BlockPos blockPos, Color c, double length, double length2) {
-        double x = (double) blockPos.getX() - mc.renderManager.renderPosX;
-        double y = (double) blockPos.getY() - mc.renderManager.renderPosY;
-        double z = (double) blockPos.getZ() - mc.renderManager.renderPosZ;
+        double x = (double) blockPos.getX() - mc.getRenderManager().renderViewEntity.posX;
+        double y = (double) blockPos.getY() - mc.getRenderManager().renderViewEntity.posY;
+        double z = (double) blockPos.getZ() - mc.getRenderManager().renderViewEntity.posZ;
         GL11.glPushMatrix();
         GL11.glBlendFunc(770, 771);
         GL11.glEnable(3042);
@@ -1396,7 +1397,7 @@ public class RenderUtil
 
     public static void glBillboard(float x, float y, float z) {
         float scale = 0.02666667f;
-        GlStateManager.translate((double) x - mc.getRenderManager().renderPosX, (double) y - mc.getRenderManager().renderPosY, (double) z - mc.getRenderManager().renderPosZ);
+        GlStateManager.translate((double) x - mc.getRenderManager().viewerPosX, (double) y - mc.getRenderManager().viewerPosY, (double) z - mc.getRenderManager().viewerPosZ);
         GlStateManager.glNormal3f(0.0f, 1.0f, 0.0f);
         GlStateManager.rotate(-mc.player.rotationYaw, 0.0f, 1.0f, 0.0f);
         GlStateManager.rotate(mc.player.rotationPitch, mc.gameSettings.thirdPersonView == 2 ? -1.0f : 1.0f, 0.0f, 0.0f);
@@ -1463,7 +1464,7 @@ public class RenderUtil
         GL11.glDisable(2929);
         GL11.glDepthMask(false);
         s.setDrawStyle(100013);
-        GL11.glTranslated(x - mc.renderManager.renderPosX, y - mc.renderManager.renderPosY, z - mc.renderManager.renderPosZ);
+        GL11.glTranslated(x - mc.getRenderManager().viewerPosX, y - mc.getRenderManager().viewerPosY, z - mc.getRenderManager().viewerPosZ);
         s.draw(size, slices, stacks);
         GL11.glLineWidth(2.0f);
         GL11.glEnable(3553);
@@ -1488,7 +1489,7 @@ public class RenderUtil
         if (projection.getType() == GLUProjection.Projection.Type.INSIDE) {
             GlStateManager.pushMatrix();
             GlStateManager.translate(projection.getX(), projection.getY(), 0.0);
-            Phobos.textManager.drawString(text, -((float) Phobos.textManager.getStringWidth(text) / 2.0f) + addX, addY, color.getRGB(), shadow);
+            FontUtils.normal.drawString(text, -((float) FontUtils.normal.getStringWidth(text) / 2.0f) + addX, addY, color.getRGB());
             GlStateManager.translate(-projection.getX(), -projection.getY(), 0.0);
             GlStateManager.popMatrix();
         }
@@ -1930,7 +1931,7 @@ public class RenderUtil
     }
 
     public static void checkSetupFBO() {
-        Framebuffer fbo = mc.framebuffer;
+        Framebuffer fbo = mc.getFramebuffer();
         if (fbo != null && fbo.depthBuffer > -1) {
             RenderUtil.setupFBO(fbo);
             fbo.depthBuffer = -1;

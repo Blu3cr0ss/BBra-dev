@@ -1,6 +1,5 @@
 package idk.bbra.other.util;
 
-import idk.earth.phobos.features.modules.client.ClickGui;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.play.client.CPacketPlayer;
@@ -111,7 +110,7 @@ public class RotationUtil
 
     public static double yawDist(Entity e) {
         if (e != null) {
-            Vec3d difference = e.getPositionVector().add(0.0, e.getEyeHeight() / 2.0f, 0.0).subtract(mc.player.getPositionEyes(mc.getRenderPartialTicks()));
+            Vec3d difference = e.getPositionVector().addVector(0.0, e.getEyeHeight() / 2.0f, 0.0).subtract(mc.player.getPositionEyes(mc.getRenderPartialTicks()));
             double d = Math.abs((double) mc.player.rotationYaw - (Math.toDegrees(Math.atan2(difference.z, difference.x)) - 90.0)) % 360.0;
             return d > 180.0 ? 360.0 - d : d;
         }
@@ -126,12 +125,12 @@ public class RotationUtil
         if (angle < -270.0f) {
             return true;
         }
-        float fov = (ClickGui.getInstance().customFov.getValue() != false ? ClickGui.getInstance().fov.getValue().floatValue() : mc.gameSettings.fovSetting) / 2.0f;
+        float fov = (mc.gameSettings.fovSetting) / 2.0f;
         return angle < fov + 10.0f && angle > -fov - 10.0f;
     }
 
     public static float getFov() {
-        return ClickGui.getInstance().customFov.getValue() != false ? ClickGui.getInstance().fov.getValue().floatValue() : mc.gameSettings.fovSetting;
+        return mc.gameSettings.fovSetting;
     }
 
     public static float getHalvedfov() {

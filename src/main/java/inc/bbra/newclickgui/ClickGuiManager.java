@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import inc.bbra.exploit.Module.Module;
+import inc.bbra.exploit.utils.other.FriendsManager;
 import net.minecraft.client.gui.GuiScreen;
 import inc.bbra.newclickgui.component.Component;
 import inc.bbra.newclickgui.component.Frame;

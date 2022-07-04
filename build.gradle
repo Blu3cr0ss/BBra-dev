@@ -17,7 +17,7 @@ apply plugin: 'kotlin'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '0.1'
+version = '0.2'
 group = 'inc.bbra.exploit'
 archivesBaseName = 'BBraExploit'
 

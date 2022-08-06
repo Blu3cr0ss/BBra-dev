@@ -15,16 +15,13 @@ out
 
 # gradle
 build
-.gradle
 
 # other
 eclipse
 run
+.bin
+.lock
+/.gradle/
 
 # Files from Forge MDK
 forge*changelog.txt
-
-#my
-/.gradle/
-/run/
-/build/

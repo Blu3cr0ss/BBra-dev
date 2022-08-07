@@ -3,19 +3,29 @@ buildscript {
     repositories {
         mavenCentral()
         maven { url = 'https://maven.minecraftforge.net/' }
+        maven { url = "http://repo.spongepowered.org/maven" }
+        maven { url = "https://dist.creeper.host/Sponge/maven" }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1"
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
+}
+
+plugins {
+    id 'org.spongepowered.plugin' version '0.8.1'
 }
 
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'kotlin'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'org.spongepowered.mixin'
+
 
 version = '0.2'
 group = 'inc.bbra.exploit'
@@ -72,6 +82,7 @@ dependencies {
     ////////////////////JSON
     implementation "com.googlecode.json-simple:json-simple:1.1.1"
     implementation "com.google.code.gson:gson:2.7"
+
 
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"

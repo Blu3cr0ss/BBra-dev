@@ -13,7 +13,8 @@ buildscript {
         classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
 }
-
+def mixinLoader = 'org.spongepowered.asm.launch.MixinTweaker'
+//def mixinLoader = 'inc.bbra.exploit.mixin.BBraMixinLoader'
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'kotlin'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
@@ -36,12 +37,12 @@ minecraft {
             jvmArgs "-Xms2G", "-Xmx2G", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseG1GC", "-XX:G1NewSizePercent=20", "-XX:G1ReservePercent=20", "-XX:MaxGCPauseMillis=50", "-XX:G1HeapRegionSize=32M"
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
-            args '--tweakClass', 'org.spongepowered.asm.launch.MixinTweaker', '--mixin', 'mixins.bbra.json'
+            args '--tweakClass', mixinLoader, '--mixin', 'mixins.bbra.json'
         }
         server {
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
-            args '--tweakClass', 'org.spongepowered.asm.launch.MixinTweaker', '--mixin', 'mixins.bbra.json'
+            args '--tweakClass', mixinLoader, '--mixin', 'mixins.bbra.json'
         }
     }
 }
@@ -69,7 +70,7 @@ jar {
         attributes([
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.version,
-                "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
+                "TweakClass": "${mixinLoader}",
                 "MixinConfigs": "mixins.bbra.json", // Конфигурации миксинов, через зяпятую если их несколько
                 "FMLCorePluginContainsFMLMod": "true",  // Не забываем указать эти два флага,
                 "ForceLoadAsMod": "true",               // чтобы Forge нормально загрузил и мод, и миксины

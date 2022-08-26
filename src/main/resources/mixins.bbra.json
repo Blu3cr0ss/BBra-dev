@@ -4,11 +4,11 @@
   "package": "inc.bbra.exploit.mixin.impl",
   "refmap": "mixins.bbra.refmap.json",
   "mixins": [
-    "MixinGui",
-    "MixinServer"
+    "MixinBlock",
+    "MixinEntityPlayer",
+    "MixinNetworkManager"
   ],
   "client": [
-    "MixinFontRenderer"
   ],
   "server": []
 }

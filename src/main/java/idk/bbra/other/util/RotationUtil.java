@@ -110,7 +110,7 @@ public class RotationUtil
 
     public static double yawDist(Entity e) {
         if (e != null) {
-            Vec3d difference = e.getPositionVector().addVector(0.0, e.getEyeHeight() / 2.0f, 0.0).subtract(mc.player.getPositionEyes(mc.getRenderPartialTicks()));
+            Vec3d difference = e.getPositionVector().add(0.0, e.getEyeHeight() / 2.0f, 0.0).subtract(mc.player.getPositionEyes(mc.getRenderPartialTicks()));
             double d = Math.abs((double) mc.player.rotationYaw - (Math.toDegrees(Math.atan2(difference.z, difference.x)) - 90.0)) % 360.0;
             return d > 180.0 ? 360.0 - d : d;
         }

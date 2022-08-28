@@ -5,10 +5,12 @@
   "refmap": "mixins.bbra.refmap.json",
   "mixins": [
     "MixinBlock",
+    "MixinEntity",
     "MixinEntityPlayer",
     "MixinNetworkManager"
   ],
   "client": [
+    "MixinRenderGlobal"
   ],
   "server": []
 }

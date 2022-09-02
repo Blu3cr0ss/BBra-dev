@@ -4,13 +4,15 @@
   "package": "inc.bbra.exploit.mixin.impl",
   "refmap": "mixins.bbra.refmap.json",
   "mixins": [
+    "MixinAbstractHorse",
     "MixinBlock",
+    "MixinDeathEvent",
     "MixinEntity",
-    "MixinEntityPlayer",
     "MixinNetworkManager"
   ],
   "client": [
-    "MixinRenderGlobal"
+    "MixinDestroyBlockProgress",
+    "MixinFontRenderer"
   ],
   "server": []
 }

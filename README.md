@@ -1,4 +1,4 @@
-# BBra on top
+# Archived :(
 
 This is development BBra exploit repository. 
 If you just player who wants to download a client and play go to BBra-prod. 
